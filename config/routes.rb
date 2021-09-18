@@ -11,9 +11,9 @@ Rails.application.routes.draw do
     patch 'items/update'
   end
   namespace :admin do
-    get 'genres/index'
-    get 'genres/show'
-    patch 'genres/update'
+      resources :genres, only: [:create, :index, :show, :destroy, :update, :edit] do
+      end
+
   end
   namespace :admin do
     get 'homes/top'

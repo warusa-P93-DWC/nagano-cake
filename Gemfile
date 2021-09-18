@@ -81,7 +81,6 @@ gem 'font-awesome-sass', '~> 5.13'
 gem 'activeadmin'
 gem 'devise'
 
-gem 'font-awesome-sass', '~> 5.13'
 
 gem "stripe"
 
