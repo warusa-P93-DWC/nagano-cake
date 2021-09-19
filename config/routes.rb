@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :customers
+  devise_for :admins
+  root to: 'public/homes#top'
   namespace :admin do
     patch 'order_details/update'
   end
@@ -60,5 +63,4 @@ Rails.application.routes.draw do
     get 'customers/unsubscribe'
     patch 'customers/withdraw'
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
