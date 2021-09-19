@@ -11,8 +11,10 @@ Rails.application.routes.draw do
     patch 'items/update'
   end
   namespace :admin do
-      resources :genres, only: [:create, :index, :show, :destroy, :update, :edit] do
-      end
+    resources :genres, only: [:create, :index, :show, :destroy, :update, :edit] do
+    end
+    patch '/admin/genres/:id/edit' => 'admin_genres#edit'
+
 
   end
   namespace :admin do

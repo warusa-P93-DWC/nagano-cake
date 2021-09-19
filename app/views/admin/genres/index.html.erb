@@ -6,15 +6,19 @@
  <%= f.text_field :name %>
 
  <%= f.submit '新規登録' %>
- 
-<% end %>
 
-<tbody>
+<% end %>
+<h2>ジャンル</h2>
+
+<table>
+
 <% @genres.each do |genre| %>
 
 <tr>
  <td><%= genre.name %></td>
+ <td><%= link_to "編集する", edit_admin_genre_path(genre) %></td>
 
 </tr>
 
 <% end %>
+</table>
