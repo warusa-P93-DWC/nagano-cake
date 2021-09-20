@@ -24,7 +24,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-            <% if customer_signed_in? %>
+            <% if admin_signed_in? %>
            <%= link_to root_path do%>
             <span class="fas fa-home">Home</span>
            <% end %>
@@ -34,7 +34,7 @@
            <%= link_to public_cart_items_index_path do%>
             <span class="fas fa-book-open">cart</span>
            <% end %>
-           <%= link_to destroy_customer_session_path, method: :delete do%>
+           <%= link_to destroy_admin_session_path, method: :delete do%>
             <span class="fas fa-sign-out-alt">Logout</span>
            <% end %>
           <% else %>
@@ -44,10 +44,10 @@
            <%= link_to public_homes_about_path do%>
             <span class="fas fa-link">About</span>
            <% end %>
-           <%= link_to new_customer_registration_path do%>
+           <%= link_to new_admin_registration_path do%>
             <span class="fas fa-user-plus">sign up</span>
            <% end %>
-           <%= link_to new_customer_session_path do%>
+           <%= link_to new_admin_session_path do%>
             <span class="fas fa-sign-in-alt">login</span>
            <% end %>
            <% end %>

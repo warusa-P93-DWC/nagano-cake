@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :customers
+  # devise_for :customers
   devise_for :admins
   root to: 'public/homes#top'
   namespace :admin do
@@ -14,9 +14,9 @@ Rails.application.routes.draw do
     patch 'items/update'
   end
   namespace :admin do
-    get 'genres/index'
-    get 'genres/show'
-    patch 'genres/update'
+    resources :genres, only: [:create, :index, :show, :destroy, :update, :edit] do
+    end
+    patch 'genres/:id/edit' => 'genres#edit'
   end
   namespace :admin do
     get 'homes/top'
