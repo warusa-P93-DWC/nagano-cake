@@ -15,7 +15,7 @@
     <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <%= link_to 
+
       <%= link_to root_path do%>
            <span class="navbar-brand">長野cake</span>
            <% end %>
@@ -24,7 +24,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-            <% if customer_signed_in? %>
+            <% if admin_signed_in? %>
            <%= link_to root_path do%>
             <span class="fas fa-home">Home</span>
            <% end %>
@@ -34,9 +34,17 @@
            <%= link_to public_cart_items_index_path do%>
             <span class="fas fa-book-open">cart</span>
            <% end %>
-           <%= link_to destroy_customer_session_path, method: :delete do%>
+           <%= link_to destroy_admin_session_path, method: :delete do%>
             <span class="fas fa-sign-out-alt">Logout</span>
            <% end %>
+           
+           <% elsif customer_signed_in? %>
+            <li id="youkoso">ようこそ、<%= current_customer.last_name %>さん！</li>
+            <li><%= link_to public_customers_show_path do %><i class="fas fa-user"></i>マイページ<% end %></li>
+            <li><%= link_to public_items_index_path do %><i class="fas fa-cookie-bite"></i>商品一覧<% end %></li>
+            <li><%= link_to public_cart_items_index_path do %><div class="fas fa-icon-flex"><%= current_customer.carts.count %></i></div><i class="cart">カート</i><% end %></li>
+            <li><%= link_to destroy_customer_session_path, method: :delete do %><i class="fas fa-sign-out-alt"></i>ログアウト<% end %></li>
+           <%#= image_tag "cake.gif", :size =>'80x80' %>
           <% else %>
            <%= link_to root_path do%>
             <span class="fas fa-home">Home</span>
@@ -73,3 +81,4 @@
 </footer>
 
 </body>
+<%# end %>
