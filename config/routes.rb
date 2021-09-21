@@ -1,8 +1,18 @@
 Rails.application.routes.draw do
-  # devise_for :customers
-  devise_for :admins
-  root to: 'public/homes#top'
+  root 'public/homes#top'
+  devise_for :customers, controllers: {
+    sessions:      'public/sessions',
+    passwords:     'public/passwords',
+    registrations: 'public/registrations'
+    }
+  devise_for :admins, controllers: {
+    sessions:      'admin/sessions',
+    passwords:     'admin/passwords',
+    registrations: 'admin/registrations'
+    }
+
   namespace :admin do
+    get '/admin' => '/homes#top'
     patch 'order_details/update'
   end
   namespace :admin do

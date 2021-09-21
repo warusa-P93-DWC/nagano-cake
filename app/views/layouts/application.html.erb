@@ -37,6 +37,14 @@
            <%= link_to destroy_admin_session_path, method: :delete do%>
             <span class="fas fa-sign-out-alt">Logout</span>
            <% end %>
+           
+           <% elsif customer_signed_in? %>
+            <li id="youkoso">ようこそ、<%= current_customer.last_name %>さん！</li>
+            <li><%= link_to public_customers_show_path do %><i class="fas fa-user"></i>マイページ<% end %></li>
+            <li><%= link_to public_items_index_path do %><i class="fas fa-cookie-bite"></i>商品一覧<% end %></li>
+            <li><%= link_to public_cart_items_index_path do %><div class="fas fa-icon-flex"><%= current_customer.carts.count %></i></div><i class="cart">カート</i><% end %></li>
+            <li><%= link_to destroy_customer_session_path, method: :delete do %><i class="fas fa-sign-out-alt"></i>ログアウト<% end %></li>
+           <%#= image_tag "cake.gif", :size =>'80x80' %>
           <% else %>
            <%= link_to root_path do%>
             <span class="fas fa-home">Home</span>
@@ -44,10 +52,10 @@
            <%= link_to public_homes_about_path do%>
             <span class="fas fa-link">About</span>
            <% end %>
-           <%= link_to new_admin_registration_path do%>
+           <%= link_to new_customer_registration_path do%>
             <span class="fas fa-user-plus">sign up</span>
            <% end %>
-           <%= link_to new_admin_session_path do%>
+           <%= link_to new_customer_session_path do%>
             <span class="fas fa-sign-in-alt">login</span>
            <% end %>
            <% end %>
@@ -73,3 +81,4 @@
 </footer>
 
 </body>
+<%# end %>
