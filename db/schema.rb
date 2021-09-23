@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2021_09_19_092549) do
     t.string "last_name"
     t.string "first_name"
     t.string "kana_last_name"
-    t.string "kana_fast_name"
+    t.string "kana_first_name"
     t.string "postal_code"
     t.string "telephone_number"
     t.string "address"

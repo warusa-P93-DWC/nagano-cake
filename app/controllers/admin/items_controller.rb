@@ -10,11 +10,15 @@ class Admin::ItemsController < ApplicationController
     redirect_to admin_item_path(@item)
   end
 
-  def edit
-  end
 
   def show
     @item = Item.find(params[:id])
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+    @genre = Genre.all
+
   end
 
   def index
@@ -23,7 +27,11 @@ class Admin::ItemsController < ApplicationController
   end
 
   def update
-    
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+     binding.pry
+    redirect_to admin_item_path(@item)
+
   end
 
   private
