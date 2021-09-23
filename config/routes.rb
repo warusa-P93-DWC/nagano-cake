@@ -32,9 +32,10 @@ Rails.application.routes.draw do
     get 'homes/top'
   end
   namespace :admin do
-    get 'orders/index'
-    get 'orders/show'
-    patch 'orders/update'
+    resources :orders, only: [:index, :show]
+  end
+  namespace :admin do
+    resources :customers, only: [:index, :show, :edit, :update, :create] 
   end
   namespace :public do
     get 'homes/top'
