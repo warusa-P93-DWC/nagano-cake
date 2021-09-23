@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :genres, only: [:create, :index, :show, :destroy, :update, :edit] do
     end
-    patch 'genres/:id/edit' => 'genres#edit'
+    patch 'genres/:id/edit' => 'genres#edit',as: 'admin_genre'
   end
   namespace :admin do
     resources :customers
@@ -40,10 +40,10 @@ Rails.application.routes.draw do
     get 'homes/top'
   end
   namespace :admin do
-    resources :orders, only: [:index, :show]
-  end
-  namespace :admin do
-    resources :customers, only: [:index, :show, :edit, :update, :create] 
+    resources :orders
+    # get 'orders/index'
+    # get 'orders/show'
+    # patch 'orders/update'
   end
   namespace :public do
     get 'homes/top'
