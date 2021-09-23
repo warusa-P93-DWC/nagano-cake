@@ -16,17 +16,25 @@ Rails.application.routes.draw do
     patch 'order_details/update'
   end
   namespace :admin do
-    get 'items/new'
-    post 'items/create'
-    get 'items/edit'
-    get 'items/show'
-    get 'items/index'
-    patch 'items/update'
+    resources :items
+    #   resource do
+    #   get 'get_jenre_children', defaults: { format: 'json' }
+    #   get 'get_jenre_grandchildren', defaults: { format: 'json' }
+    # end
+    # customer do
+    #   get 'purchase', to: 'items#purchase'
+    #   post 'order', to: 'items#buy'
+    # end
+
+    # patch 'items/update'
   end
   namespace :admin do
     resources :genres, only: [:create, :index, :show, :destroy, :update, :edit] do
     end
     patch 'genres/:id/edit' => 'genres#edit'
+  end
+  namespace :admin do
+    resources :customers
   end
   namespace :admin do
     get 'homes/top'

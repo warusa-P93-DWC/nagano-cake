@@ -25,7 +25,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
             <% if admin_signed_in? %>
-           <%= link_to admin_items_index_path do%>
+           <%= link_to admin_items_path do%>
             <span class="fas fa-home">商品一覧</span>
            <% end %>
            <%= link_to admin_customers_path do%>
