@@ -1,0 +1,36 @@
+<h1>マイページ</h1>
+
+<%= link_to edit_public_customer_path do%>
+<div class="customer-edit">編集する</div>
+<% end %>
+<tr>
+ <ul><li>氏名</li></ul>
+ <ul><%= current_customer.last_name %><%= current_customer.first_name %></ul>
+</tr>
+<tr>
+ <ul><li>カナ</li></ul>
+ <ul><%= current_customer.kana_last_name %><%= current_customer.kana_first_name %></ul>
+</tr>
+<tr>
+ <ul><li>郵便番号</li></ul>
+ <ul><%= current_customer.postal_code %></ul>
+</tr>
+<tr>
+ <ul><li>電話番号</li></ul>
+ <ul><%= current_customer.telephone_number %></ul>
+</tr>
+<tr>
+ <ul><li>住所</li></ul>
+ <ul><%= current_customer.address %></ul>
+</tr>
+<tr>
+ <ul><li>メールアドレス</li></ul>
+ <ul><%= current_customer.email %></ul>
+</tr>
+
+<%= link_to public_addresses_path do%>
+<div class="customer-edit">登録住所一覧</div>
+<% end %>
+<%= link_to edit_customer_registration_path do%>
+<div class="customer-edit">メールアドレス、パスワード変更</div>
+<% end %>

@@ -40,9 +40,9 @@
            
            <% elsif customer_signed_in? %>
             <li id="youkoso">ようこそ、<%= current_customer.last_name %>さん！</li>
-            <li><%= link_to public_customers_show_path do %><i class="fas fa-user"></i>マイページ<% end %></li>
-            <li><%= link_to public_items_index_path do %><i class="fas fa-cookie-bite"></i>商品一覧<% end %></li>
-            <li><%= link_to public_cart_items_index_path do %><div class="fas fa-icon-flex"><%= current_customer.carts.count %></i></div><i class="cart">カート</i><% end %></li>
+            <li><%= link_to public_customer_path(current_customer) do %><i class="fas fa-user"></i>マイページ<% end %></li>
+            <li><%= link_to public_items_path do %><i class="fas fa-cookie-bite"></i>商品一覧<% end %></li>
+            <li><%= link_to public_cart_items_path do %><div class="fas fa-icon-flex"><%= current_customer.carts.count %></i></div><i class="cart">カート</i><% end %></li>
             <li><%= link_to destroy_customer_session_path, method: :delete do %><i class="fas fa-sign-out-alt"></i>ログアウト<% end %></li>
            <%#= image_tag "cake.gif", :size =>'80x80' %>
           <% else %>
@@ -53,10 +53,10 @@
             <span class="fas fa-link">About</span>
            <% end %>
            <%= link_to new_customer_registration_path do%>
-            <span class="fas fa-user-plus">sign up</span>
+            <span class="fas fa-user-plus">新規登録</span>
            <% end %>
            <%= link_to new_customer_session_path do%>
-            <span class="fas fa-sign-in-alt">login</span>
+            <span class="fas fa-sign-in-alt">ログイン</span>
            <% end %>
            <% end %>
         </ul>
