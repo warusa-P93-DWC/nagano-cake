@@ -1,2 +1,56 @@
-<h1>Admin::Items#index</h1>
-<p>Find me in app/views/admin/items/index.html.erb</p>
+<div class="container item-index">
+  
+  <div class="row justify-content-center mt-4">
+    <div class="col-10 row justify-content-between">
+      <span class="bg-light font-weight-bold fs-5 col-2 text-center font-monospace pt-2">商品一覧</span>
+      <div class="fs-2 col-2"><%#= link_to "", new_admins_item_path, class:"far fa-plus-square", :style => "color: black;" %></div>
+    </div>
+  </div>
+  
+  <div class="row justify-content-center mt-3">
+    <div class="col-10">
+      <table class="table table-hover">
+        <thead class="bg-light">
+          <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜価格</th>
+            <th>ジャンル</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @items.each do |item| %>
+          <tr>
+            <td><%= item.id %></td>
+            <td><%= link_to "#{item.name}", admin_item_path(item), :style => "color: black;text-decoration: underline" %></td>
+            <td><%= item.price %></td>
+            <td><%= item.genre.name %></td>
+            <% if item.is_active == true %>
+            <td style="color:green;">販売中</td>
+            <% elsif %>
+            <td style="color:gray;">販売停止中</td>
+            <% end %>
+           </tr>
+           <% end %>
+        </tbody>
+      </table>
+      <%#= paginate @item %>
+    </div>
+  </div>
+</div>
+
+<!--<h1>商品一覧</h1>-->
+
+<!--<table>-->
+<!-- <%# @items.each do |item| %>-->
+
+<!--<tr>-->
+<!-- <td><%#= attachment_image_tag @item, :image, :fill, 100, 100, format: 'jpeg' %></td>-->
+<!-- <td><%#= item.name %></td>-->
+<!-- <td><%#= item.genre.name %></td>-->
+<!-- <td><%#= item.price %>円</td>-->
+<!-- <%# if item.is_active == true %>-->
+<!--  <td style="color:green;">販売中</td>-->
+<!--  <%#end %>-->
+<!--</table>-->
