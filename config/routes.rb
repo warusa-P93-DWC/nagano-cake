@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     patch 'order_details/update'
   end
   namespace :admin do
+
     resources :items
     #   resource do
     #   get 'get_jenre_children', defaults: { format: 'json' }
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
     # end
 
     # patch 'items/update'
+
   end
   namespace :admin do
     resources :genres, only: [:create, :index, :show, :destroy, :update, :edit] do
@@ -40,46 +42,43 @@ Rails.application.routes.draw do
     get 'homes/top'
   end
   namespace :admin do
+
     resources :orders
     # get 'orders/index'
     # get 'orders/show'
     # patch 'orders/update'
+
   end
   namespace :public do
     get 'homes/top'
     get 'homes/about'
   end
   namespace :public do
-    get 'orders/new'
+    resources :orders, only: [:new, :create, :index, :show] do
+    end
     post 'orders/confirm'
-    post 'orders/create'
     get 'orders/complete'
-    get 'orders/index'
-    get 'orders/show'
   end
   namespace :public do
-    get 'items/index'
-    get 'items/show'
+    resources :items, only: [:index, :show] do
+    end
   end
   namespace :public do
-    get 'addresses/index'
-    get 'addresses/edit'
-    post 'addresses/create'
-    delete 'addresses/destroy'
-    patch 'addresses/update'
+    resources :addresses, only: [:create, :index, :destroy, :update, :edit] do
+    end
   end
   namespace :public do
-    get 'cart_items/index'
-    delete 'cart_items/destroy'
-    patch 'cart_items/update'
+    resources :cart_items, only: [:create, :index, :destroy, :update] do
+  end
     delete 'cart_items/destroy_all'
-    post 'cart_items/create'
+    
   end
   namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-    patch 'customers/update'
+    resources :customers, only: [:show, :edit, :update] do
+  end
+    patch ':id/withdraw/:name' => 'homes#withdraw', as: 'withdraw_customer'
     get 'customers/unsubscribe'
     patch 'customers/withdraw'
+    patch "/customers/:id/hide" => "customers#hide", as: 'customers_hide'
   end
 end
