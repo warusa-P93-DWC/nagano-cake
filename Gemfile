@@ -85,4 +85,8 @@ gem 'font-awesome-sass', '~> 5.13'
 
 gem "stripe"
 
-gem "pry-rails"
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
+gem 'kaminari'
+
+gem 'pry-byebug'
