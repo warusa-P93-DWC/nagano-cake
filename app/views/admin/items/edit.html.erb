@@ -1,7 +1,7 @@
 <div class="container">
   <p class="fs-3 mt-3 ms-4">商品編集</p>
   <div class>
-  <%= form_with(model: @item,url: admin_item_path(@item), local: true)  do |f| %>
+  <%= form_with model: @item,url: admin_item_path(@item), local: true  do |f| %>
   
     <div class="field">
       <div>商品画像</div>
