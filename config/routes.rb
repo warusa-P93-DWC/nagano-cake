@@ -58,8 +58,7 @@ Rails.application.routes.draw do
     get 'orders/show'
   end
   namespace :public do
-    get 'items/index'
-    get 'items/show'
+    resources :items
   end
   namespace :public do
     get 'addresses/index'
@@ -69,11 +68,8 @@ Rails.application.routes.draw do
     patch 'addresses/update'
   end
   namespace :public do
-    get 'cart_items/index'
-    delete 'cart_items/destroy'
-    patch 'cart_items/update'
     delete 'cart_items/destroy_all'
-    post 'cart_items/create'
+    resources :cart_items
   end
   namespace :public do
     get 'customers/show'
