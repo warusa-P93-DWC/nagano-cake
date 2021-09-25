@@ -1,16 +1,24 @@
 class Public::ItemsController < ApplicationController
   def index
-     @items = Item.all
-     @items = Item.page(params[:page]).reverse_order
-     @genres = Genre.all
-
-    
+    @items = Item.page(params[:page]).per(8)
+    @item_counts = Item.all
+    @genres = Genre.all
   end
 
   def show
     @item = Item.find(params[:id])
-    @cart= Cart.new
     @genres = Genre.all
+    @cart_items = Cart.new
+    @cart = Cart.all
+  end
+
+  def search
+    @genres = Genre.all
+    if params[:name].present?
+      @items = Item.where('name LIKE ?', "%#{params[:name]}%")
+    else
+      @items = Item.none
+    end
   end
 
 

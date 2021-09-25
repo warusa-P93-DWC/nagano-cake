@@ -9,30 +9,31 @@ class Public::CartItemsController < ApplicationController
   def create
     @cart_item = Cart.new(cart_item_params)
     @cart_item.customer_id = current_customer.id
-   if @cart_item.save
-    redirect_to public_cart_items_path
-   else
-    render "public_item_path(item)"
-   end
-
-
+    @validate_into_cart = @cart_item.validate_into_cart
+    if @validate_into_cart == false
+      flash[:into_cart_error] = "個数が選択されていないか、すでにカートに追加されているアイテムです。"
+      redirect_to public_cart_items_path(params[:cart][:item_id])
+    else
+      @cart_item.save
+      redirect_to public_cart_items_path
+    end
   end
 
   def update
     @cart_item = Cart.find(params[:id])
     @cart_item.update(cart_item_params)
-    redirect_to cart_items_path
+    redirect_to public_cart_items_path
   end
 
   def destroy
     cart_item = Cart.find(params[:id])
     cart_item.destroy
-    redirect_to cart_items_path
+    redirect_to public_cart_items_path
   end
 
   def destroy_all
     current_customer.carts.destroy_all
-    redirect_to cart_items_path
+    redirect_to public_cart_items_path
   end
 
   private
@@ -52,4 +53,3 @@ class Public::CartItemsController < ApplicationController
 
   end
 end
-
