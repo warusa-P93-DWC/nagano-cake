@@ -1,2 +1,18 @@
-<h1>Public::Addresses#edit</h1>
-<p>Find me in app/views/public/addresses/edit.html.erb</p>
+<%= form_with model: @address, url: public_address_path(@address), local: true do |f| %>
+  
+  <div class="field">
+    <%= f.label :住所 %><br />
+    <%= f.text_field :address, autofocus: true %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :宛名 %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :郵便番号 %><br />
+    <%= f.text_field :postal_code, autofocus: true %>
+  </div>
+  <div><%= f.submit 'Update address' %></div>
+  <% end %>

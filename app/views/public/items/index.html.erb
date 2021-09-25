@@ -1,13 +1,36 @@
-<h1>商品一覧</h1>
 
-<table>
- <% @items.each do |item| %>
+<div class="text-center">
+    <h2 class="item_index_thema">商品一覧(全<%= @items.count %>件)</h2>
+ </div>
+<div class="container">
+  
+  <div class="row justify-content-center mt-4">
+    <div class="col-10 row justify-content-between">
+    
+      <div class="fs-2 col-2"></div>
 
-<tr>
- <td><%= attachment_image_tag @item, :image, :fill, 100, 100, format: 'jpeg' %></td>
- <td><%= item.name %></td>
- <td><%= item.genre %></td>
-</tr>
+    </div>
+  </div>
+  
+  <div class="row justify-content-center mt-3">
+    <div class="col-10">
 
-<% end %>
-</table>
+    <% @items.each do |item| %>
+        <ul>
+        <hr class="cp_hr01" />
+        <li class="item_icon">
+          <%= attachment_image_tag item, :image,class:'item_photo' %>
+          <div class="item_text">
+          <p class="item_name">商品名：<%= item.name %></p>
+          <p class="item_name">金額：¥<%= item.price.round.to_s(:delimited) %>(税込)<br>
+          <%= link_to "商品詳細" ,public_item_path(item),class:'btn btn-signup  mt-4' %></p>
+          </div>
+          
+        </li>
+        </ul>
+    <% end %>
+       
+    <%= paginate @items %>
+    </div>
+  </div>
+</div>

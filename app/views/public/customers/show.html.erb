@@ -1,0 +1,55 @@
+<h1>ユーザー情報</h1>
+<div>
+  <td class = "hutomozi">登録情報<td>
+    <td><%= link_to "編集する", edit_public_customer_path(@customer) %>
+    </td>
+</div>
+  <div class = "row mt-4">
+    <div class = "col-sm-5">
+        <table border="2" width="600" height="300">
+            <tbody align="center">
+                <tr>
+                  <td width="200">氏名</td>
+                  <td>
+                    <%= current_customer.last_name%>
+                    <%= current_customer.first_name%>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>フリガナ</td>
+                  <td>
+                    <%= current_customer.kana_last_name %>
+                    <%= current_customer.kana_first_name %>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>郵便番号</td>
+                  <td><%= current_customer.postal_code %></td>
+                </tr>
+
+                <tr>
+                  <td>住所</td>
+                  <td><%= current_customer.address %></td>
+                </tr>
+
+                 <tr>
+                  <td>電話番号</td>
+                  <td><%= current_customer.telephone_number %></td>
+                </tr>
+
+                <tr>
+                  <td>メールアドレス</td>
+                  <td><%= current_customer.email %></td>
+                </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+<tr>
+<td>配送先</td>
+<td><%= link_to "一覧を見る", public_addresses_path %>
+</td>
+</tr>

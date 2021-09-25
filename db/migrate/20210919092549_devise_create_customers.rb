@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class DeviseCreateCustomers < ActiveRecord::Migration[5.2]
+ 
   def change
     create_table :customers do |t|
       ## Database authenticatable
@@ -38,7 +39,8 @@ class DeviseCreateCustomers < ActiveRecord::Migration[5.2]
       t.string :postal_code
       t.string :telephone_number
       t.string :address
-      t.boolean :is_deleted
+
+      t.boolean :is_deleted , default: false, null: false
 
 
 

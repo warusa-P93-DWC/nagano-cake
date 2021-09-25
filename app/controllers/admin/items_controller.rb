@@ -2,6 +2,8 @@ class Admin::ItemsController < ApplicationController
   def new
     @item = Item.new
     @genre = Genre.all
+    @items = Item.page(params[:page]).per(10)
+
   end
 
   def create
@@ -28,8 +30,7 @@ class Admin::ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    @item.update(item_params)
-     binding.pry
+    @item.update(admin_item_params)
     redirect_to admin_item_path(@item)
 
   end
