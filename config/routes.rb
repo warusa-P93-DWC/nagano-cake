@@ -60,8 +60,7 @@ Rails.application.routes.draw do
     get 'orders/complete'
   end
   namespace :public do
-    resources :items, only: [:index, :show] do
-    end
+    resources :items
   end
   namespace :public do
     resources :addresses, only: [:create, :index, :destroy, :update, :edit] do

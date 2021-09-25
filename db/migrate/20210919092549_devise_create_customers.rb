@@ -1,14 +1,7 @@
 # frozen_string_literal: true
 
 class DeviseCreateCustomers < ActiveRecord::Migration[5.2]
-  validates :email, {presence: true}
-  validates :first_name, {presence: true}
-  validates :last_name, {presence: true}
-  validates :kana_fast_name, {presence: true}
-  validates :kana_last_name, {presence: true}
-  validates :telephone_number, {presence: true}
-  validates :postal_code, {presence: true}
-  validates :address, {presence: true}
+ 
   def change
     create_table :customers do |t|
       ## Database authenticatable
