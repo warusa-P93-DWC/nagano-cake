@@ -1,56 +1,36 @@
-<div class="container item-index">
+
+<div class="text-center">
+    <h2 class="item_index_thema">商品一覧(全<%= @items.count %>件)</h2>
+ </div>
+<div class="container">
   
   <div class="row justify-content-center mt-4">
     <div class="col-10 row justify-content-between">
-      <span class="bg- font-weight-bold fs-5 col-2 text-center font-monospace pt-2">商品一覧</span>
-      <div class="fs-2 col-2"><%#= link_to "新規登録", new_admin_item_path, class:"far fa-plus-square", :style => "color: black;" %></div>
+    
+      <div class="fs-2 col-2"></div>
+
     </div>
   </div>
   
   <div class="row justify-content-center mt-3">
     <div class="col-10">
-      <table class="table table-hover">
-        <thead class="bg-light">
-          <tr>
-            <th>商品ID</th>
-            <th>商品名</th>
-            <th>税抜価格</th>
-            <th>ジャンル</th>
-            <th>ステータス</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @items.each do |item| %>
-          <tr>
-            <td><%= item.id %></td>
-            <td><%= link_to "#{item.name}", public_item_path(item), :style => "color: black;text-decoration: underline" %></td>
-            <td><%= item.price %></td>
-            <td><%= item.genre.name %></td>
-            <% if item.is_active == true %>
-            <td style="color:green;">販売中</td>
-            <% elsif %>
-            <td style="color:gray;">販売停止中</td>
-            <% end %>
-          </tr>
-           <% end %>
-        </tbody>
-      </table>
-      <%= paginate @items %>
+
+    <% @items.each do |item| %>
+        <ul>
+        <hr class="cp_hr01" />
+        <li class="item_icon">
+          <%= attachment_image_tag item, :image,class:'item_photo' %>
+          <div class="item_text">
+          <p class="item_name">商品名：<%= item.name %></p>
+          <p class="item_name">金額：¥<%= item.price.round.to_s(:delimited) %>(税込)<br>
+          <%= link_to "商品詳細" ,public_item_path(item),class:'btn btn-signup  mt-4' %></p>
+          </div>
+          
+        </li>
+        </ul>
+    <% end %>
+       
+    <%= paginate @items %>
     </div>
   </div>
 </div>
-
-
-<!--<h1>商品一覧</h1>-->
-
-<!--<table>-->
-<!-- <%# @items.each do |item| %>-->
-
-<!--<tr>-->
-<!-- <td><%#= attachment_image_tag @item, :image, :fill, 100, 100, format: 'jpeg' %></td>-->
-<!-- <td><%#= item.name %></td>-->
-<!-- <td><%#= item.genre.name %></td>-->
-<!--</tr>-->
-
-<!--<%# end %>-->
-<!--</table>-->

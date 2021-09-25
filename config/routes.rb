@@ -62,7 +62,7 @@ Rails.application.routes.draw do
   namespace :public do
 
     resources :items
-   
+
   end
   namespace :public do
     resources :addresses, only: [:create, :index, :destroy, :update, :edit] do
