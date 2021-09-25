@@ -23,7 +23,7 @@
 
                   <tr>
                       <td>ジャンル</td>
-                      <td><%= @item.genre.name %></td>
+                      <td><%= @genres.name %></td>
                   </tr>
 
                   <tr>
@@ -31,10 +31,6 @@
                       <td><%= @item.price %>（<%= (@item.price * 1.1).floor %>）円</td>
                   </tr>
 
-                  <tr>
-                      <td>販売ステータス</td>
-                      <td><%= @item.is_active %></td>
-                  </tr>
 
               </tbody>
           </table>
@@ -44,7 +40,7 @@
 
 </div>
       <!-- カートに入れるボタン -->
-               <%= form_with model:@cart, url:cart_items_path, local:true do |f| %>
+               <%= form_with model:@cart_items, url:public_cart_items_path, local:true do |f| %>
             <%= f.number_field :quantity, min:1, placeholder: "個数選択" %>個
             <%= f.hidden_field :item_id, :value => @item.id %>
             <%= f.submit "カートに入れる", class: "btn btn-outline-danger" %>
