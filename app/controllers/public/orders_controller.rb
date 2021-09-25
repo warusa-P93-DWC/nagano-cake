@@ -16,7 +16,7 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @orders = current_customer.orders
-      @total_price = calculate(current_customer)
+    @total_price = calculate(current_customer)
 
     #   if  session[:address].length <8
     #     @address = Address.find(session[:address])
@@ -69,8 +69,8 @@ class Public::OrdersController < ApplicationController
       @order_detail.quantity = cart.quantity
       @order_detail.item_status = 0
       @order_detail.save
-
     end
+    
     current_customer.carts.destroy_all
     session.delete(:address)
     session.delete(:payment)

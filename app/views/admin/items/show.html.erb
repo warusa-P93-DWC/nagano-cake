@@ -26,7 +26,7 @@
       </div>
       <div class="row">
         <p class="col-2">税込価格<br>(税抜価格)</p>
-        <p class="col-4 fs-5"><%#= @item.price.to_s(:delimited) %>(<%#= @item.add_tax_price.to_s(:delimited) %>)円</p>
+        <p class="col-4 fs-5"><%= @item.price.to_s(:delimited) %>(<%#= @item.add_tax_price.to_s(:delimited) %>)円</p>
       </div>
       <% if @item.is_active == true %>
       <div class="row">

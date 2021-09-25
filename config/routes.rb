@@ -76,9 +76,12 @@ Rails.application.routes.draw do
     
   end
   namespace :public do
+
+    resources :customers
     resources :customers, only: [:show, :edit, :update] do
   end
     patch ':id/withdraw/:name' => 'homes#withdraw', as: 'withdraw_customer'
+
     get 'customers/unsubscribe'
     patch 'customers/withdraw'
     patch "/customers/:id/hide" => "customers#hide", as: 'customers_hide'
