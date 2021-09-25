@@ -72,9 +72,7 @@ Rails.application.routes.draw do
     resources :cart_items
   end
   namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-    patch 'customers/update'
+    resources :customers
     get 'customers/unsubscribe'
     patch 'customers/withdraw'
   end
