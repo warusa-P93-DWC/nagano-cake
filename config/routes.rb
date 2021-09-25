@@ -60,16 +60,19 @@ Rails.application.routes.draw do
     get 'orders/complete'
   end
   namespace :public do
+
     resources :items
+
   end
   namespace :public do
     resources :addresses, only: [:create, :index, :destroy, :update, :edit] do
     end
   end
   namespace :public do
-    resources :cart_items, only: [:create, :index, :destroy, :update] do
-  end
+
     delete 'cart_items/destroy_all'
+    resources :cart_items
+
     
   end
   namespace :public do

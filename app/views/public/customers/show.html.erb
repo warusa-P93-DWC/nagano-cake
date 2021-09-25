@@ -1,36 +1,55 @@
-<h1>マイページ</h1>
+<h1>ユーザー情報</h1>
+<div>
+  <td class = "hutomozi">登録情報<td>
+    <td><%= link_to "編集する", edit_public_customer_path(@customer) %>
+    </td>
+</div>
+  <div class = "row mt-4">
+    <div class = "col-sm-5">
+        <table border="2" width="600" height="300">
+            <tbody align="center">
+                <tr>
+                  <td width="200">氏名</td>
+                  <td>
+                    <%= current_customer.last_name%>
+                    <%= current_customer.first_name%>
+                  </td>
+                </tr>
 
-<%= link_to edit_public_customer_path do%>
-<div class="customer-edit">編集する</div>
-<% end %>
-<tr>
- <ul><li>氏名</li></ul>
- <ul><%= current_customer.last_name %><%= current_customer.first_name %></ul>
-</tr>
-<tr>
- <ul><li>カナ</li></ul>
- <ul><%= current_customer.kana_last_name %><%= current_customer.kana_first_name %></ul>
-</tr>
-<tr>
- <ul><li>郵便番号</li></ul>
- <ul><%= current_customer.postal_code %></ul>
-</tr>
-<tr>
- <ul><li>電話番号</li></ul>
- <ul><%= current_customer.telephone_number %></ul>
-</tr>
-<tr>
- <ul><li>住所</li></ul>
- <ul><%= current_customer.address %></ul>
-</tr>
-<tr>
- <ul><li>メールアドレス</li></ul>
- <ul><%= current_customer.email %></ul>
-</tr>
+                <tr>
+                  <td>フリガナ</td>
+                  <td>
+                    <%= current_customer.kana_last_name %>
+                    <%= current_customer.kana_first_name %>
+                  </td>
+                </tr>
 
-<%= link_to public_addresses_path do%>
-<div class="customer-edit">登録住所一覧</div>
-<% end %>
-<%= link_to edit_customer_registration_path do%>
-<div class="customer-edit">メールアドレス、パスワード変更</div>
-<% end %>
+                <tr>
+                  <td>郵便番号</td>
+                  <td><%= current_customer.postal_code %></td>
+                </tr>
+
+                <tr>
+                  <td>住所</td>
+                  <td><%= current_customer.address %></td>
+                </tr>
+
+                 <tr>
+                  <td>電話番号</td>
+                  <td><%= current_customer.telephone_number %></td>
+                </tr>
+
+                <tr>
+                  <td>メールアドレス</td>
+                  <td><%= current_customer.email %></td>
+                </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+<tr>
+<td>配送先</td>
+<td><%= link_to "一覧を見る", public_addresses_path %>
+</td>
+</tr>
