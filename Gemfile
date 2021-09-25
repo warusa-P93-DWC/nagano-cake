@@ -90,6 +90,3 @@ gem "refile-mini_magick"
 gem 'kaminari'
 
 gem 'pry-byebug'
-
-
-

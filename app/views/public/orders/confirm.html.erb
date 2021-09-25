@@ -1,2 +1,76 @@
-<h1>Public::Orders#confirm</h1>
-<p>Find me in app/views/public/orders/confirm.html.erb</p>
+
+  <div class="container">
+    <div class="row">
+
+          <h4 class="mb-4 text-color col-3 text-center ml-5 pb-2 pt-2 rounded-pill">注文情報確認</h4>
+    </div>
+
+          <div class="row">
+            <table class="table table-bordered border-dark col-7">
+            <thead>
+              <tr class="table-color">
+                  <th class="table-active">商品名</th>
+                  <th class="table-active">単価(税込)</th>
+                  <th class="table-active">数量</th>
+                  <th class="table-active">小計</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @sum = 0 %>
+              <% @cart_products.each do |cart_product| %>
+              <tr>
+                  <td><%= cart_product.product.name  %></td>
+                  <td><%= cart_product.product.add_tax_price %></td>
+                  <td><%= cart_product.amount %></td>
+                  <td><%= cart_product.product.add_tax_price * cart_product.amount %></td>
+              </tr>
+              <% @sum += cart_product.product.add_tax_price * cart_product.amount %>
+              <% end %>
+            </tbody>
+           </table>
+
+           <table class="table table-bordered border-dark col-2 mb-3 ml-5 h-75">
+              <tr>
+                  <th class="table-active">送料</th>
+
+              </tr>
+              <tr>
+                  <th class="table-active table-color">商品合計</th>
+                  <td><%= @sum %></td>
+              </tr>
+              <tr>
+                  <th class="table-active">請求金額</th>
+
+              </tr>
+           </table>
+        </div>
+
+
+
+          <div class="payment_info row mt-3 mb-3">
+              <h5 class="font-weight-bold">支払方法　　</h5>
+              <%= @order.payment_method %>
+              <br>
+          </div>
+
+          <div class="address_info row mb-3">
+              <h5 class="font-weight-bold">お届け先　　</h5>
+
+              <br>
+          </div>
+
+
+
+      <div class="row">
+
+        <div class="col-5 confirm_image"></div>
+        <div class="col-6">
+
+      <%= link_to '注文確定', public_orders_complete_path, class:"btn btn-secondary" %>
+
+
+          </div>
+
+
+      </div>
+  </div>
