@@ -5,6 +5,7 @@ class Public::AddressesController < ApplicationController
   end
 
   def edit
+    @address = Address.find(params[:id])
   end
 
   def create
@@ -12,7 +13,7 @@ class Public::AddressesController < ApplicationController
    if @address.save
     redirect_to public_addresses_path
    else
-    render 'new'
+    redirect_to public_addresses_path
    end
   end
 
@@ -23,6 +24,9 @@ class Public::AddressesController < ApplicationController
   end
 
   def update
+    @address = Address.find(params[:id])
+    @address.update(address_params)
+    redirect_to edit_public_customer_path
   end
 end
   private

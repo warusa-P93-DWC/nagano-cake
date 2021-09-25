@@ -34,3 +34,14 @@ thead {
   border-style: none;
 }
 
+.hyou{
+  width: 800px;
+  border: 1px solid;
+  tr{
+    height: 75px;
+    border-bottom: 1px solid;
+  }
+  td{
+    border-left: 1px solid;
+  }
+}
