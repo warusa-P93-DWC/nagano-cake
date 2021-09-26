@@ -1,2 +1,68 @@
-<h1>Admin::Items#show</h1>
-<p>Find me in app/views/admin/items/show.html.erb</p>
+<div class='top-bg px-5 px-sm-0'>
+<div class="container">
+  <div class="row">
+    <p class="col-1"></p>
+    <p class="mt-4 fs-2 bg-light col-2 text-center">商品詳細</p>
+  </div>
+
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="item_image col-4">
+      <%= attachment_image_tag @item, :image, format: 'jpeg', fallback: "no_image.jpg",size:"400x300" %>
+    </div>
+
+    <div class="col-6 mt-4">
+      <div class="row">
+        <p class="col-2">商品名</p>
+        <p class="col-4 fs-5"><%=@item.name %></p>
+      </div>
+      <div class="row">
+        <p class="col-2">商品説明</p>
+        <p class="col-4 fs-5"><%= @item.detail %></p>
+      </div>
+      <div class="row">
+        <p class="col-2">ジャンル</p>
+        <p class="col-4 fs-5"><%= @item.genre.name %></p>
+      </div>
+      <div class="row">
+        <p class="col-2">税込価格<br>(税抜価格)</p>
+        <p class="col-4 fs-5"><%= @item.price.to_s(:delimited) %>(<%#= @item.add_tax_price.to_s(:delimited) %>)円</p>
+      </div>
+      <% if @item.is_active == true %>
+      <div class="row">
+        <p class="col-3">販売ステータス</p>
+        <p class="col-3 fs-5 fw-bold" style="color:green">販売中</p>
+      </div>
+      <% elsif @item.is_active == false %>
+      <div class="row">
+        <p class="col-3">販売ステータス</p>
+        <p class="col-3 fs-5" style="color:gray">販売停止中</p>
+      </div>
+      <% end %>
+      <div class="row position-relative mt-4">
+      <%= link_to "編集する", edit_admin_item_path(@item),class:"btn btn-success col-2 position-absolute top-50 start-50 translate-middle"%>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!--<h2>商品詳細</h2>-->
+<!--<%#= attachment_image_tag @item, :image, :fill, 300, 300, format: 'jpeg' %>-->
+
+<!--<h3>商品名</h3>-->
+
+<!--<table>-->
+
+<!--<tr>-->
+<!-- <td><%#= @item.name %></td>-->
+<!-- <td><%#= @item.detail %></td>-->
+<!-- <td><%#= @item.genre.name %></td>-->
+<!-- <td><%#= @item.price %></td>-->
+<!-- <td><%#= @item.is_active %></td>-->
+<!-- <td><%#= link_to "edit", edit_admin_item_path %></td>-->
+<!--</tr>-->
+<!--</table>-->
+
+

@@ -1,2 +1,95 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<div class="container my-5">
+  <div class="row">
+    <h2>注文履歴詳細</h2>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-sm-9">
+      <table class="table table-borderless">
+
+        <tbody>
+          <tr>
+            <td>購入者</td>
+            <td>
+              <%= link_to admin_customer_path(@order.customer) do %>
+              <%= @order.customer.last_name %>
+              <%= @order.customer.first_name %>
+              <% end %>
+            </td>
+          </tr>
+
+          <tr>
+            <td>注文日</td>
+            <td><%= @order.created_at.strftime("%Y/%m/%d") %></td>
+          </tr>
+
+          <tr>配達先
+          <td><%= @order.address %></td>
+          </tr>
+
+          <tr>支払方法
+          <td><%= @order.payment_method %></td>
+          </tr>
+
+           <tr>
+            <td>注文ステータス</td>
+            <td><%= form_for (@order), url: admin_order_path(@order) do |f| %>
+                <%= f.select :status, [["入金待ち", "入金待ち"], ["入金確認","入金確認"],["製作中","製作中"],["発送準備中","発送準備中"],["発送済み","発送済み"]], class: "form-control" %>
+                <%= f.submit "更新", class: "btn btn-success btn-sm" %>
+                <% end %>
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-sm-9">
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+        </thead>
+
+        <% @order_dates.each do |order_date| %>
+          <tbody>
+            <tr>
+              <td><%= order_date.name %></td>
+              <td><%= (order_date.price * 1.1).floor %></td>
+              <td><%= order_date.quantity %></td>
+              <td><%= (order_date.price * order_date.quantity * 1.1).floor %></td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+
+    <div class="col-sm-3 d-flex">
+      <table class="table table-borderless align-self-end">
+        <tbody>
+          <tr class="border-bottom border-dark">
+            <td>商品合計</td>
+            <td><%= (@order.total_payment - @order.postage ) %>円</td>
+          </tr>
+
+           <tr class="border-bottom border-dark">
+            <td>送料</td>
+            <td><%= @order.postage %>円</td>
+          </tr>
+
+          <tr class="border- bottom border-dark">
+            <td>請求合計金額</td>
+            <td><%= @order.total_payment %>円</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

@@ -1,2 +1,74 @@
-<h1>Admin::Items#edit</h1>
-<p>Find me in app/views/admin/items/edit.html.erb</p>
+<div class="container">
+  <p class="fs-3 mt-3 ms-4">商品編集</p>
+  <div class>
+  <%= form_with model: @item,url: admin_item_path(@item), local: true  do |f| %>
+  
+    <div class="field">
+      <div>商品画像</div>
+      <div><%= f.attachment_field :image %></div>
+    </div>
+    
+    <div class="field">
+      <%= f.label :name, "商品名" %>
+      <%= f.text_field :name %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :detail, "商品説明" %>
+      <%= f.text_area :detail %>
+    </div>
+    
+     <div class="field">
+       <%= f.label:genres, "ジャンル" %>
+       <%= f.collection_select(:genre_id, @genre, :id, :name) %>
+     </div>
+     
+     <div class="field">
+       <%=f.label :price, "税抜価格" %>
+       <%= f.text_field :price %>円
+    </div>
+    
+    <div class="field">
+      <%=f.label:"販売ステータス" %>
+        <%= f.radio_button :is_active, "販売中",checked: true %>
+        <%= f.label :is_active, "販売中", value: :true %>
+      
+        <%= f.radio_button :is_active, :false %>
+        <%= f.label :is_active, "販売停止中",value: :false %>
+      
+    </div>
+    
+    <div class>
+      <%= f.submit "変更を保存", class: "btn btn-sm btn-success" %>
+    </div>
+   
+  <% end %>
+  </div>
+</div>
+
+<!--<h1>商品編集画面</h1>-->
+
+<!--<%#= form_with model: @item, url: admin_item_path(@item), local:true do |f| %>-->
+
+<!--<h4>商品画像</h4>-->
+<!-- <%#= f.attachment_field :image %>-->
+
+<!--<h4>商品名</h4>-->
+<!-- <%#= f.text_field :name %>-->
+
+<!--<h4>商品説明</h4>-->
+<!-- <%#= f.text_area :detail %>-->
+
+<!--<h4>ジャンル</h4>-->
+<!-- <%#= f.select :genre_id, Genre.all.map { |genre| [genre.name, genre.id] } %>-->
+
+<!--<h4>税抜価格</h4>-->
+<!-- <%#= f.text_field :price %>円-->
+
+<!--<h4>販売ステータス</h4>-->
+<!-- <%#= f.radio_button :is_active, true %>販売中-->
+<!-- <%#= f.radio_button :is_active, false %>販売停止中-->
+
+<!-- <%#= f.submit '変更を保存' %>-->
+
+<!-- <%# end %>-->

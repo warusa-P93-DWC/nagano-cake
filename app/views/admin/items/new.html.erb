@@ -1,2 +1,84 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<div class="container">
+  <p class="field">商品新規登録</p>
+  <div class="field">
+  <%= form_with model: @item,url: admin_items_path, local: true do |f| %>
+
+    <div class="field">
+      <div class="col-3"></div>
+      <div class="col-2 fs-5">商品画像</div>
+      <div class="col-5"><%= f.attachment_field :image %></div>
+    </div>
+
+    <div class="field">
+      <div class="col-3"></div>
+      <div class="col-2 fs-5"><%= f.label :name, "商品名" %></div>
+      <div class="col-5"><%= f.text_field :name,  size: 39, placeholder: "商品名" %>
+    </div>
+
+    <div class="field">
+      <div class="col-3"></div>
+      <div class="col-2 fs-5"><%= f.label :detail, "商品説明" %></div>
+      <div class="col-5"><%= f.text_area :detail,  size: "41x7", placeholder: "ここに説明文を記述します"%></div>
+    </div>
+
+     <div class="field">
+       <div class="col-3"></div>
+       <div class="col-2 fs-5"><%= f.label:genres, "ジャンル" %></div>
+       <div class="col-5"><%= f.select :genre_id, Genre.all.map { |genre| [genre.name, genre.id] } %></div>
+     </div>
+
+    <div class="field">
+       <div class="col-3"></div>
+       <div class="col-2 fs-5"><%=f.label :price, "税抜価格" %></div>
+       <div class="col-5"><%= f.text_field :price,  size: 39, placeholder: "1000" %><span>円</span></div>
+    </div>
+
+
+    <div class="field">
+      <div class="col-3"></div>
+       <div class="col-2 fs-5"><%=f.label:"販売ステータス"%></div>
+      <!--<div  class="col-1">-->
+       <%= f.radio_button :is_active, "販売中",checked: true %>
+       <%= f.label :is_active, "販売中", value: :true %>
+    </div>
+      <div  class="field">
+       <%= f.radio_button :is_active, :false %>
+       <%= f.label :is_active, "販売停止中",value: :false %>
+      </div>
+    
+
+    <div class="field">
+       <%= f.submit "　新規登録　", class: "btn btn-sm btn-success mt-3 mb-5" %>
+    </div>
+  <% end %>
+  </div>
+</div>
+
+<!--<h1>商品新規登録</h1>-->
+<!-- <%#= form_with model: @item, url: admin_items_path, local:true do |f| %>-->
+
+<!--<h4>商品画像</h4>-->
+<!-- <%#= f.attachment_field :image %>-->
+
+<!--<h4>商品名</h4>-->
+<!-- <%#= f.text_field :name %>-->
+
+<!--<h4>商品説明</h4>-->
+<!-- <%#= f.text_area :detail %>-->
+
+<!--<h4>ジャンル</h4>-->
+<!-- <%#= f.select :genre_id, Genre.all.map { |genre| [genre.name, genre.id] } %>-->
+
+<!--<h4>税抜価格</h4>-->
+<!-- <%#= f.text_field :price %>円-->
+
+<!--<h4>販売ステータス</h4>-->
+<!-- <%#= f.radio_button :is_active, true %>販売中-->
+<!-- <%#= f.radio_button :is_active, false %>販売停止中-->
+
+<!-- <%#= f.submit '新規登録' %>-->
+
+
+<!--<%# end %>-->
+
+

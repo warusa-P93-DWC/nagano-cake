@@ -1,15 +1,97 @@
+
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NaganoCake</title>
+    <title>nagano-cake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
-  </body>
-</html>
+    <header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+          <%= link_to root_path do%>
+           <span class="navbar-brand"><%= image_tag '1.png', size: '50x50' %></span>
+          <% end %>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+            <% if admin_signed_in? %>
+           <%= link_to admin_items_path do%>
+            <span class="fas fa-home">商品一覧</span>
+           <% end %>
+           <%= link_to admin_customers_path do%>
+            <span class="fas fa-users">会員一覧</span>
+           <% end %>
+           <%= link_to admin_orders_path do%>
+            <span class="fas fa-book-open">注文履歴一覧</span>
+           <% end %>
+        　<%= link_to admin_genres_path do%>
+            <span class="fas fa-book-open">ジャンル一覧</span>
+           <% end %>
+           <%= link_to destroy_admin_session_path, method: :delete do%>
+            <span class="fas fa-sign-out-alt">Logout</span>
+           <% end %>
+
+           <% elsif customer_signed_in? %>
+             <span class="">ようこそ、<%= current_customer.last_name %>さん！</span>
+
+            <%= link_to public_customer_path(current_customer) do %>
+             <span class="fas fa-user ">マイページ</span>
+            <% end %>
+
+            <%= link_to public_items_path do %>
+             <span class="fas fa-cookie-bite">商品一覧</span>
+            <% end %>
+
+            <%= link_to public_cart_items_path do %>
+             <span class="fas fa-icon-flex"><%= current_customer.carts.count %><i class="cart">カート</i><% end %></span>
+
+            <%= link_to destroy_customer_session_path, method: :delete do %>
+            <span class="fas fa-sign-out-alt">ログアウト</span>
+            <% end %>
+          <% else %>
+           <%= link_to public_homes_about_path do%>
+            <span class="fas fa-home">About</span>
+           <% end %>
+           <%= link_to public_items_path do%>
+            <span class="fas fa-link">商品一覧</span>
+           <% end %>
+           <%= link_to new_customer_registration_path do%>
+            <span class="fas fa-user-plus">新規登録</span>
+           <% end %>
+           <%= link_to new_customer_session_path do%>
+            <span class="fas fa-sign-in-alt">ログイン</span>
+           <% end %>
+           <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+      <main>
+          <% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "#{key}") %>
+  <% end %>
+        <%= yield %>
+      </main>
+    <footer>
+  <div class="container mt-5">
+  	<div class="row">
+    	<div class="mx-auto">
+    		<p>CopyRight Infratop.inc</p>
+    	</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+<%# end %>

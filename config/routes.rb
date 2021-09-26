@@ -1,64 +1,86 @@
 Rails.application.routes.draw do
+  root 'public/homes#top'
+  devise_for :customers, controllers: {
+    sessions:      'public/sessions',
+    passwords:     'public/passwords',
+    registrations: 'public/registrations'
+    }
+  devise_for :admins, controllers: {
+    sessions:      'admin/sessions',
+    passwords:     'admin/passwords',
+    registrations: 'admin/registrations'
+    }
+
   namespace :admin do
+    get '/admin' => '/homes#top'
     patch 'order_details/update'
   end
   namespace :admin do
-    get 'items/new'
-    post 'items/create'
-    get 'items/edit'
-    get 'items/show'
-    get 'items/index'
-    patch 'items/update'
+
+    resources :items
+    #   resource do
+    #   get 'get_jenre_children', defaults: { format: 'json' }
+    #   get 'get_jenre_grandchildren', defaults: { format: 'json' }
+    # end
+    # customer do
+    #   get 'purchase', to: 'items#purchase'
+    #   post 'order', to: 'items#buy'
+    # end
+
+    # patch 'items/update'
+
   end
   namespace :admin do
-    get 'genres/index'
-    get 'genres/show'
-    patch 'genres/update'
+    resources :genres, only: [:create, :index, :show, :destroy, :update, :edit] do
+    end
+    patch 'genres/:id/edit' => 'genres#edit',as: 'admin_genre'
+  end
+  namespace :admin do
+    resources :customers
   end
   namespace :admin do
     get 'homes/top'
   end
   namespace :admin do
-    get 'orders/index'
-    get 'orders/show'
-    patch 'orders/update'
+
+    resources :orders
+    # get 'orders/index'
+    # get 'orders/show'
+    # patch 'orders/update'
+
   end
   namespace :public do
     get 'homes/top'
     get 'homes/about'
+    get 'unsubscribe' => 'homes#unsubscribe', as: 'confirm_unsubscribe'
+    patch ':id/withdraw' => 'homes#withdraw', as: 'withdraw_customer'
+    put 'withdraw' => 'customers#withdraw'
   end
   namespace :public do
-    get 'orders/new'
+    resources :orders, only: [:new, :create, :index, :show] do
+    end
     post 'orders/confirm'
-    post 'orders/create'
     get 'orders/complete'
-    get 'orders/index'
-    get 'orders/show'
   end
   namespace :public do
-    get 'items/index'
-    get 'items/show'
+
+    resources :items
+
   end
   namespace :public do
-    get 'addresses/index'
-    get 'addresses/edit'
-    post 'addresses/create'
-    delete 'addresses/destroy'
-    patch 'addresses/update'
+    resources :addresses, only: [:create, :index, :destroy, :update, :edit] do
+    end
   end
   namespace :public do
-    get 'cart_items/index'
-    delete 'cart_items/destroy'
-    patch 'cart_items/update'
+
     delete 'cart_items/destroy_all'
-    post 'cart_items/create'
+    resources :cart_items
+
+    
   end
   namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-    patch 'customers/update'
-    get 'customers/unsubscribe'
-    patch 'customers/withdraw'
+
+    resources :customers
+    resources :customers, only: [:show, :edit, :update]
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
