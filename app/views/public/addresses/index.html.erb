@@ -1,24 +1,24 @@
+<div class="shinzi">
 <%= form_with model: @address, url: public_addresses_path, local: true do |f| %>
 
   <div class="field">
     <%= f.label :住所 %><br />
     <%= f.text_field :address, autofocus: true %>
   </div>
-  
+
   <div class="field">
     <%= f.label :宛名 %><br />
     <%= f.text_field :name, autofocus: true %>
   </div>
-  
+
   <div class="field">
     <%= f.label :郵便番号 %><br />
     <%= f.text_field :postal_code, autofocus: true %>
   </div>
   <div><%= f.submit '新規登録' %></div>
   <% end %>
-  
-<div class = "row mt-4">
-  <div class = "col-sm-5">
+
+
     <table class = "hyou">
         <tbody align="center">
             <tr>
@@ -40,6 +40,4 @@
             <% end %>
       </tbody>
     </table>
-  </div>
 </div>
-
