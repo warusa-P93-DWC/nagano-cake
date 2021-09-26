@@ -1,36 +1,33 @@
-
-<div class="text-center">
-    <h2 class="item_index_thema">商品一覧(全<%= @items.count %>件)</h2>
- </div>
 <div class="container">
-  
-  <div class="row justify-content-center mt-4">
-    <div class="col-10 row justify-content-between">
-    
-      <div class="fs-2 col-2"></div>
+  <div class="row">
 
-    </div>
+      <h4 class="mb-5 text-color col-3 text-center pt-4 rounded-pill">
+        商品一覧(全<%= @items.count %>件)
+      </h4>
+    <div class="col-8 product_index_image offset-1"></div>
+
   </div>
-  
-  <div class="row justify-content-center mt-3">
-    <div class="col-10">
+</div>
 
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-4 g-4">
     <% @items.each do |item| %>
-        <ul>
-        <hr class="cp_hr01" />
-        <li class="item_icon">
-          <%= attachment_image_tag item, :image,class:'item_photo' %>
-          <div class="item_text">
-          <p class="item_name">商品名：<%= item.name %></p>
-          <p class="item_name">金額：¥<%= item.price.round.to_s(:delimited) %>(税込)<br>
-          <%= link_to "商品詳細" ,public_item_path(item),class:'btn btn-signup  mt-4' %></p>
+      <div class="col-md-3">
+        <div class="card mb-3">
+          <%= link_to public_item_path(item.id) do %>
+            <%= attachment_image_tag item,:image, size:"255x210", fallback: "no_image.jpg" %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= item.name %>
+            </h5>
+            <p class="card-text">
+              <% tax_in = item.price * 1.10 %>
+                ¥ <%= tax_in.round.to_s(:delimited) %>
+            </p>
           </div>
-          
-        </li>
-        </ul>
+        </div>
+      </div>
     <% end %>
-       
-    <%= paginate @items %>
-    </div>
   </div>
 </div>

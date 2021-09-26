@@ -49,3 +49,21 @@ i {
     border-left: 1px solid;
   }
 }
+
+.grid {
+  display: grid;
+  gap: 26px;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 6%;
+  margin-bottom: 50px;
+}
+
+li.item_icon {
+  width: 100px;
+  height: 100px;
+}
+
+body {
+  background: linear-gradient(-135deg, #f7c6bd, #f5a500);
+}
+
