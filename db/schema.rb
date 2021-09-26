@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2021_09_19_092549) do
   end
 
   create_table "orders", force: :cascade do |t|
+    t.integer "customer_id"
     t.integer "postage"
     t.string "address"
     t.string "postal_code"
