@@ -47,8 +47,14 @@
           <%= f.label :メールアドレス, class: "col-sm-4" %>
           <%= f.text_field :email, class: "form-control col-sm-8" %>
         </div>
-
-        <!--会員ステータス不明-->
+        
+       
+          <%= f.label :会員ステータス %>
+          <%= f.radio_button :is_deleted, :true %>
+          <%= f.label :is_deleted, "退会" %>
+          <%= f.radio_button :is_deleted, :false %>
+          <%= f.label :is_deleted, "有効" %>
+       
 
          <div class="row justify-content-center mt-5">
           <div class="col-sm-3">
