@@ -17,12 +17,16 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-span{
+span {
   padding: 8px;
-  color: white;  
+  color: #c1994d;
 }
 
-.text{
+cart {
+  color: #c1994d;
+}
+
+.text {
   color: black;
 }
 
@@ -34,7 +38,7 @@ thead {
   border-style: none;
 }
 
-i {
+span.i {
   color: white;
 }
 
@@ -96,6 +100,10 @@ body {
 }
 
 header{
-  background-color: white;
+  background-color: black;
 }
 
+.shinzi {
+  padding: 0 280px;
+  text-align: center;
+}

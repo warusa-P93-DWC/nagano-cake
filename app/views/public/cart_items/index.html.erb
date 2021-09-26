@@ -12,7 +12,7 @@
 
     <div class="row mt-5">
       <div class="offset-1 col-9">
-        <table class="table table-borderless">
+        <table class="hyou">
           <thead>
             <tr class="red-border">
               <th>商品名</th>
@@ -24,7 +24,7 @@
           </thead>
 
           <% @cart_items.each do |cart_item| %>
-            <tbody>
+            <tbody align="center">
               <tr class="brown-border">
                 <td class="align-middle">
                   <%= attachment_image_tag cart_item.item, :image, size: "50x50", fallback: "no_image.jpg" %>
@@ -35,7 +35,7 @@
 
 
                   <%= form_with model:@cart_items, url:public_cart_items_path(cart_item) do |f| %>
-                  <div class="row">
+                  <div class="oga">
                     <%= f.number_field :quantity, min:1,class: "col-6" %>
                     <%= f.submit "変更", class: "btn btn-sm btn-outline-danger offset-1 col-4" %>
                   </div>
