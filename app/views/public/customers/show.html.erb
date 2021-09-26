@@ -1,12 +1,14 @@
-<h1>ユーザー情報</h1>
+<div class="haikei">
+  <h1>ユーザ情報</h1>
 <div>
   <td class = "hutomozi">登録情報<td>
-    <td><%= link_to "編集する", edit_public_customer_path(@customer) %>
+    <button type="button" class="btn btn-success"><%= link_to "編集する", edit_public_customer_path(@customer) %></button>
     </td>
 </div>
+
   <div class = "row mt-4">
     <div class = "col-sm-5">
-        <table border="2" width="600" height="300">
+        <table class="hyou">
             <tbody align="center">
                 <tr>
                   <td width="200">氏名</td>
@@ -47,9 +49,9 @@
         </table>
       </div>
     </div>
-
-<tr>
-<td>配送先</td>
-<td><%= link_to "一覧を見る", public_addresses_path %>
-</td>
-</tr>
+    <tr>
+    <td>配送先</td>
+    <td><button type="button" class="btn btn-success"><%= link_to "一覧を見る", public_addresses_path %></button>
+    </td>
+    </tr>
+  </div>
