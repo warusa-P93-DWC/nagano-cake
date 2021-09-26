@@ -16,13 +16,39 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @orders = current_customer.orders
-    @total_price = calculate(current_customer)
-
-    #   if  session[:address].length <8
-    #     @address = Address.find(session[:address])
-
-    #   end
-  end
+    # @total_price = calculate(current_customer)
+    @cart_items = Cart.all
+    # 現在の住所を使う場合
+    if params[:address] == 'now'
+      @order = Order.new(
+        customer_id: @customer.id,
+        postal_code: @customer.postal_code,
+        address: @customer.address,
+        name: @customer.last_name + @customer.first_name,
+        payment_way: params[:order][:payment_way]
+      )
+    # 配送先登録した住所を使う場合
+    elsif params[:address] == 'select'
+      address =  Address.find_by(id: params[:select]) # params[:select]は選択した住所のid
+      @order = Order.new(
+        customer_id: @customer.id,
+        postal_code: address.postal_code,
+        address: address.address,
+        name: address.name,
+        payment_way: params[:order][:payment_way]
+      )
+    # 新しく住所を追加する場合
+    elsif params[:address] == 'new'
+      @order = Order.new(order_params)
+    else
+      @order = Order.new(order_params)
+    end
+    if @order.invalid?(:confirm)
+      render :new
+    end
+  end  
+  
+  
 
   def create
     session[:payment] = params[:payment]
@@ -93,6 +119,4 @@ class Public::OrdersController < ApplicationController
      end
      return (total_price * 1.1).floor
    end
-
-
-end
+end 

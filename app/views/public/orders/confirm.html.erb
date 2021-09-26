@@ -1,1 +1,87 @@
-<h1>注文確定しました！！</h1>
+
+<div class="cart-item-img">
+  <div role="content">
+    <div class="widget-body">
+      <div class="row justify-content-center">
+        <form id="wizard-1" novalidate="novalidate">
+          <div id="bootstrap-wizard-1" class="col-sm-12">
+            <div class="form-bootstrapWizard">
+              <ul class="bootstrapWizard form-wizard">
+                <li data-target="#step1" class=""><span class="step">1</span> <span class="title">カートに入れる</span></li>
+                <li data-target="#step2" class=""><span class="step">2</span> <span class="title">注文情報入力</span></li>
+                <li class="active" data-target="#step3"><span class="fas fa-coffee fa-2x cupcolor"></span> <span class="title">注文内容を確認</span></li>
+                <li data-target="#step4" class=""><span class="step">4</span> <span class="title">完了</span></li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class='container py-5'>
+    <h3>注文情報確認</h3>
+    <div class='d-flex mt-2'>
+      <table class='table table-bordered col-7'>
+        <tr>
+          <thead class="thead-light">
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+          </thead>
+        </tr>
+        <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td class="confirmfont"><%= cart_item.item.name %></td>
+            <td class="confirmfont"><%= ((cart_item.item.price * 1.08).floor).to_s(:delimited) %></td>
+            <td class="confirmfont"><%= cart_item.quantity %></td>
+            <td class="confirmfont"><%= ((cart_item.item.price * 1.08).floor * cart_item.quantity).to_s(:delimited) %></td>
+          </tr>
+        <% end %>
+      </table>
+      <table class='table table-bordered col-md-3 offset-md-1'>
+        <thead class="thead-light">
+        <tr>
+          <th>送料</th>
+          <td class="confirmfont">800</td>
+        </tr>
+        <tr>
+          <th>商品合計</th>
+          <td class="confirmfont"><%= @total_price.to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <th>請求金額</th>
+          <td class="confirmfont"><%= (@total_price + 800).to_s(:delimited)  %></td>
+        </tr>
+        </thead>
+      </table>
+    </div>
+    <div class='d-flex mt-5'>
+      <h5 class='font-weight-bold mb-0 mr-4'>支払方法</h5>
+      <%= @order.payment_way_i18n %>
+    </div>
+    <div class='d-flex mt-5'>
+      <h5 class='font-weight-bold mb-0 mr-4'>お届け先</h5>
+      <p>
+        〒<%= @order.postal_code %>　<%= @order.address %><br>
+        <%= @order.name %>
+      </p>
+    </div>
+    <div class='text-center'>
+      <%= form_with model: @order, url: orders_path, local:true do |f| %>
+        <%= f.hidden_field :postage, value: 800 %>
+        <%= f.hidden_field :total_price, value: @total_price + 800 %>
+        <%= f.hidden_field :payment_way, value: @order.payment_way %>
+        <%= f.hidden_field :postal_code, value: @order.postal_code %>
+        <%= f.hidden_field :address, value: @order.address %>
+        <%= f.hidden_field :name, value: @order.name %>
+        <%= f.hidden_field :status, value: 'wait' %>
+        <%= f.submit '注文を確定する', class:'btn btn-success btn-lg mt-4' %>
+      <% end %>
+    </div>
+  </div>
+
+
+</div>

@@ -3,7 +3,7 @@
 注文情報入力
 
 
-<%= form_with model: @order, url: public_orders_confirm_path, local: true do |form| %>
+<%= form_with model: @order, url: public_order_confirm_path, local: true do |form| %>
 
   <b>支払方法</b>
   <br><%= form.radio_button :payment_method, 0 %>

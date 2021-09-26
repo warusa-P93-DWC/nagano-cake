@@ -53,16 +53,22 @@ Rails.application.routes.draw do
     get 'homes/top'
     get 'homes/about'
   end
+  
   namespace :public do
-    resources :orders, only: [:new, :create, :index, :show] do
-    end
-    post 'orders/confirm'
-    get 'orders/complete'
+    post 'orders/confirm' => 'orders#confirm'
+    get 'order/confirm' => 'orders#confirm'
+    get 'order/complete' => 'orders#complete'
+
+    resources :orders, only: [:new, :create, :index, :show] 
+    
   end
+  
   namespace :public do
-
-    resources :items
-
+    resources :items 
+      get 'order' => 'orders#show'
+      post 'order/confirm' => 'orders#confirm'
+      post 'order' => 'orders#create'
+    
   end
   namespace :public do
     resources :addresses, only: [:create, :index, :destroy, :update, :edit] do
@@ -77,7 +83,7 @@ Rails.application.routes.draw do
   end
   namespace :public do
 
-    resources :customers
+    # resources :customers
     resources :customers, only: [:show, :edit, :update] do
   end
     patch ':id/withdraw/:name' => 'homes#withdraw', as: 'withdraw_customer'
