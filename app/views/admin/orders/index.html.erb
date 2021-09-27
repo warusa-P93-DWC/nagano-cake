@@ -17,13 +17,19 @@
       <tbody>
         <% @orders.each do |order| %>
           <th>
-            <td><%= link_to order.created_at.strftime("%Y/%m/%d %H:%M:%S"),admin_orders_show_path(order) %></td>
+            <td><%= link_to order.created_at.strftime("%Y/%m/%d %H:%M:%S"), public_order_path(order) %></td>
             <td>
               <%= order.customer.last_name %>
               <%= order.customer.first_name %>
             </td>
-            <td><%= order.order_details.quantity %></td>
-            <td><%= order.order_status %></td>
+            <% total = 0 %>
+        <% order.order_details.each do |order_detail|  %>
+        <% total += order_detail.quantity  %>
+        
+        <% end %>
+        
+            <td><%= total %></td>
+            <td><%= order.status %></td>
           </th>
         <% end %>
       </tbody>

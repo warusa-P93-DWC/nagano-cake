@@ -58,7 +58,7 @@ Rails.application.routes.draw do
     post 'orders/confirm' => 'orders#confirm'
     get 'order/confirm' => 'orders#confirm'
     get 'order/complete' => 'orders#complete'
-    post 'order/complete' => 'orders#complete'
+    post 'order/complete' => 'orders#create_order'
 
     resources :orders, only: [:new, :create, :index, :show]
 
