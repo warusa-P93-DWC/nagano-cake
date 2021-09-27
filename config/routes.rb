@@ -53,22 +53,23 @@ Rails.application.routes.draw do
     get 'homes/top'
     get 'homes/about'
   end
-  
+
   namespace :public do
     post 'orders/confirm' => 'orders#confirm'
     get 'order/confirm' => 'orders#confirm'
     get 'order/complete' => 'orders#complete'
+    post 'order/complete' => 'orders#complete'
 
-    resources :orders, only: [:new, :create, :index, :show] 
-    
+    resources :orders, only: [:new, :create, :index, :show]
+
   end
-  
+
   namespace :public do
-    resources :items 
+    resources :items
       get 'order' => 'orders#show'
       post 'order/confirm' => 'orders#confirm'
       post 'order' => 'orders#create'
-    
+
   end
   namespace :public do
     resources :addresses, only: [:create, :index, :destroy, :update, :edit] do
@@ -79,7 +80,7 @@ Rails.application.routes.draw do
     delete 'cart_items/destroy_all'
     resources :cart_items
 
-    
+
   end
   namespace :public do
 

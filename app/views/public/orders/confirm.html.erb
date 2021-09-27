@@ -35,11 +35,15 @@
         <% @cart_items.each do |cart_item| %>
           <tr>
             <td class="confirmfont"><%= cart_item.item.name %></td>
-            <td class="confirmfont"><%= ((cart_item.item.price * 1.08).floor).to_s(:delimited) %></td>
+            <td class="confirmfont"><%= ((cart_item.item.price * 1.1).floor).to_s(:delimited) %></td>
             <td class="confirmfont"><%= cart_item.quantity %></td>
-            <td class="confirmfont"><%= ((cart_item.item.price * 1.08).floor * cart_item.quantity).to_s(:delimited) %></td>
+            <td class="confirmfont"><%= ((cart_item.item.price * 1.1).floor * cart_item.quantity).to_s(:delimited) %></td>
+
+                 <%#= total_price = 0
+                 total_price += cart_item.item.price * cart_item.quantity + cart_item.item.price * cart_item.quantity %>
+
           </tr>
-        <% end %>
+        <%# end %>
       </table>
       <table class='table table-bordered col-md-3 offset-md-1'>
         <thead class="thead-light">
@@ -49,31 +53,36 @@
         </tr>
         <tr>
           <th>商品合計</th>
-          <td class="confirmfont"><%= @total_price.to_s(:delimited) %></td>
+          <td class="confirmfont"><%= ((cart_item.item.price * 1.1).floor * cart_item.quantity).to_s(:delimited) %><%#= @total_price.to_s(:delimited) %></td>
         </tr>
         <tr>
           <th>請求金額</th>
-          <td class="confirmfont"><%= (@total_price + 800).to_s(:delimited)  %></td>
+          <td class="confirmfont"><%= @total_price * 1.1 + "800".to_i  %></td>
         </tr>
+        <% end %>
         </thead>
       </table>
     </div>
     <div class='d-flex mt-5'>
       <h5 class='font-weight-bold mb-0 mr-4'>支払方法</h5>
-      <%= @order.payment_way_i18n %>
+      <% if @order.payment_method == 0 %>
+            <p>クレジットカード</p>
+         <% else %>
+            <p>銀行振込</p>
+      <% end %>
     </div>
     <div class='d-flex mt-5'>
       <h5 class='font-weight-bold mb-0 mr-4'>お届け先</h5>
       <p>
-        〒<%= @order.postal_code %>　<%= @order.address %><br>
-        <%= @order.name %>
+        〒<%= current_customer.postal_code %>　<%= current_customer.address %><br>
+        <%#= current_customer.name %>
       </p>
     </div>
     <div class='text-center'>
-      <%= form_with model: @order, url: orders_path, local:true do |f| %>
+      <%= form_with model: @orders, url: public_order_complete_path, local:true do |f| %>
         <%= f.hidden_field :postage, value: 800 %>
         <%= f.hidden_field :total_price, value: @total_price + 800 %>
-        <%= f.hidden_field :payment_way, value: @order.payment_way %>
+        <%= f.hidden_field :payment_method, value: @order.payment_method %>
         <%= f.hidden_field :postal_code, value: @order.postal_code %>
         <%= f.hidden_field :address, value: @order.address %>
         <%= f.hidden_field :name, value: @order.name %>
