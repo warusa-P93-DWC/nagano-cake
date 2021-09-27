@@ -23,10 +23,9 @@
               <%= order.customer.first_name %>
             </td>
             <% total = 0 %>
-        <% order.order_details.each do |order_detail|  %>
-        <% total += order_detail.quantity  %>
-        
-        <% end %>
+            <% order.order_details.each do |order_detail|  %>
+            <% total += order_detail.quantity  %>
+            <% end %>
         
             <td><%= total %></td>
             <td><%= order.status %></td>
