@@ -15,7 +15,7 @@
     <%= f.label :郵便番号 %><br />
     <%= f.text_field :postal_code, autofocus: true %>
   </div>
-  <div><%= f.submit '新規登録' %></div>
+  <div class="botan"><%= f.submit '新規登録' %></div>
   <% end %>
 
 
@@ -32,10 +32,8 @@
               <td><%= address.postal_code %></td>
               <td><%= address.address %></td>
               <td><%= address.name %></td>
-              <td>
-                <%= link_to "編集", edit_public_address_path(address) %>
-                <%= link_to "削除", public_address_path(address), method: :delete %>
-              </td>
+              <td><%= link_to "編集", edit_public_address_path(address),class:"btn btn-success"%></td>
+              <td><%= link_to "削除", public_address_path(address),class: "btn btn-danger", method: :delete %></td>
             </tr>
             <% end %>
       </tbody>

@@ -47,6 +47,9 @@ span.i {
   border: 3px solid;
   font-weight: 3px;
   background-color: white;
+  th{
+    border: 3px solid;
+  }
   tr{
     height: 75px;
     border-bottom: 3px solid;
@@ -105,5 +108,63 @@ header{
 
 .shinzi {
   padding: 0 280px;
+  text-align: center;
+}
+
+.botan{
+  margin: 10px 0;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sign_up{
+  
+}
+
+.sintyaku{
+  margin-top: 50px;
+}
+
+.table-borderless{
+  border: 1px solid;
+  
+  td{
+    border:1px solid;
+  }
+}
+
+.btn-danger{
+  color: black ; 
+}
+
+.name{
+  margin-right: 250px;
+}
+
+.bg-info{
+  color: black;
+}
+
+.table{
+  border: 1px solid;
+  background-color: white;
+  th{
+    border: 1px solid;
+  }
+  td{
+    border: 1px solid;
+  }
+}
+
+.syouhin{
+  p{
+  border: 1px solid;
+  }
+}
+
+.botann{
   text-align: center;
 }

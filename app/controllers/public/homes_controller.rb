@@ -1,5 +1,8 @@
 class Public::HomesController < ApplicationController
   def top
+    @items = Item.page(params[:page]).per(4)
+    @item_counts = Item.all
+    @genres = Genre.all
   end
 
   def about
