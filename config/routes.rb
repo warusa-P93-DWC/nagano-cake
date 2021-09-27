@@ -56,15 +56,22 @@ Rails.application.routes.draw do
     patch ':id/withdraw' => 'homes#withdraw', as: 'withdraw_customer'
     put 'withdraw' => 'customers#withdraw'
   end
-  namespace :public do
-    resources :orders, only: [:new, :create, :index, :show] do
-    end
-    post 'orders/confirm'
-    get 'orders/complete'
-  end
-  namespace :public do
 
+  namespace :public do
+    post 'orders/confirm' => 'orders#confirm'
+    get 'order/confirm' => 'orders#confirm'
+    get 'order/complete' => 'orders#complete'
+    post 'order/complete' => 'orders#complete'
+
+    resources :orders, only: [:new, :create, :index, :show]
+
+  end
+
+  namespace :public do
     resources :items
+      get 'order' => 'orders#show'
+      post 'order/confirm' => 'orders#confirm'
+      post 'order' => 'orders#create'
 
   end
   namespace :public do
@@ -76,11 +83,19 @@ Rails.application.routes.draw do
     delete 'cart_items/destroy_all'
     resources :cart_items
 
-    
+
   end
   namespace :public do
 
-    resources :customers
-    resources :customers, only: [:show, :edit, :update]
+
+    # resources :customers
+    resources :customers, only: [:show, :edit, :update] do
+  end
+    patch ':id/withdraw/:name' => 'homes#withdraw', as: 'withdraw_customer'
+
+    get 'customers/unsubscribe'
+    patch 'customers/withdraw'
+    patch "/customers/:id/hide" => "customers#hide", as: 'customers_hide'
+
   end
 end

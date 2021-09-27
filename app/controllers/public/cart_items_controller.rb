@@ -11,8 +11,10 @@ class Public::CartItemsController < ApplicationController
     @cart_item.customer_id = current_customer.id
     @validate_into_cart = @cart_item.validate_into_cart
     if @validate_into_cart == false
+
       flash[:into_cart_error] = "個数が選択されていないか、すでにカートに追加されているアイテムです。"
-      redirect_to public_cart_items_path(params[:cart][:item_id])
+      redirect_to public_cart_items_path
+
     else
       @cart_item.save
       redirect_to public_cart_items_path

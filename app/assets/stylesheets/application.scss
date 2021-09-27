@@ -17,12 +17,16 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-span{
+span {
   padding: 8px;
-  color: white;  
+  color: #c1994d;
 }
 
-.text{
+cart {
+  color: #c1994d;
+}
+
+.text {
   color: black;
 }
 
@@ -34,7 +38,7 @@ thead {
   border-style: none;
 }
 
-i {
+span.i {
   color: white;
 }
 
@@ -43,6 +47,9 @@ i {
   border: 3px solid;
   font-weight: 3px;
   background-color: white;
+  th{
+    border: 3px solid;
+  }
   tr{
     height: 75px;
     border-bottom: 3px solid;
@@ -51,6 +58,25 @@ i {
     border-left: 3px solid;
   }
 }
+
+
+.grid {
+  display: grid;
+  gap: 26px;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 6%;
+  margin-bottom: 50px;
+}
+
+li.item_icon {
+  width: 100px;
+  height: 100px;
+}
+
+body {
+  background: linear-gradient(-135deg, #f7c6bd, #f5a500);
+}
+
 
 
 .top{
@@ -77,5 +103,68 @@ i {
 }
 
 header{
+  background-color: black;
+}
+
+.shinzi {
+  padding: 0 280px;
+  text-align: center;
+}
+
+.botan{
+  margin: 10px 0;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sign_up{
+  
+}
+
+.sintyaku{
+  margin-top: 50px;
+}
+
+.table-borderless{
+  border: 1px solid;
+  
+  td{
+    border:1px solid;
+  }
+}
+
+.btn-danger{
+  color: black ; 
+}
+
+.name{
+  margin-right: 250px;
+}
+
+.bg-info{
+  color: black;
+}
+
+.table{
+  border: 1px solid;
   background-color: white;
+  th{
+    border: 1px solid;
+  }
+  td{
+    border: 1px solid;
+  }
+}
+
+.syouhin{
+  p{
+  border: 1px solid;
+  }
+}
+
+.botann{
+  text-align: center;
 }

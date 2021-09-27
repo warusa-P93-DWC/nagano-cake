@@ -1,9 +1,8 @@
-<div class="haikei">
+<div class="shinzi">
   <h1>ユーザ情報</h1>
 <div>
   <td class = "hutomozi">登録情報<td>
-    <button type="button" class="btn btn-success"><%= link_to "編集する", edit_public_customer_path(@customer) %></button>
-    </td>
+  <%= link_to "編集する", edit_public_customer_path(@customer),class: "btn btn-success" %>
 </div>
 
   <div class = "row mt-4">
@@ -51,7 +50,8 @@
     </div>
     <tr>
     <td>配送先</td>
-    <td><button type="button" class="btn btn-success"><%= link_to "一覧を見る", public_addresses_path %></button>
+    <td><%= link_to "一覧を見る", public_addresses_path,class: "btn btn-success" %>
     </td>
     </tr>
+  </div>
   </div>
