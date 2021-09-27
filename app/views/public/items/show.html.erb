@@ -1,11 +1,12 @@
+
 <div class="container my-5">
   <div class="row pl-5">
-      <h4 class = "bg-light">商品詳細</h2>
+      <h4>商品詳細</h4>
   </div>
 
   <div class = "row mt-4 justify-content-center">
       <div class = "col-sm-3">
-        <%= attachment_image_tag @item, :image, size: "200x200", format: 'jpeg' %>
+        <%= attachment_image_tag @item, :image, size: "250x250", format: 'jpeg' %>
       </div>
 
       <div class = "col-sm-5">
@@ -27,7 +28,7 @@
                   </tr>
 
                   <tr>
-                    <td>税込価格</br>(税抜価格)</td>
+                    <td>税抜価格　(税込価格)</td>
                     <!--税込と税抜が逆になってる-->
                     <td><%= @item.price %>（<%= (@item.price * 1.1).floor %>）円</td>
                   </tr>
@@ -36,10 +37,10 @@
                   <tr>
                     <td><%= form_with model:@cart_items, url:public_cart_items_path(@item), local:true do |f| %>
                         <%= f.number_field :quantity, min:1, placeholder: "個数選択" %>個
-                        <%= f.hidden_field :item_id, :value => @item.id %>
-                        <%= f.submit "カートに入れる", class: "btn btn-outline-danger" %></td>
+                        <%= f.hidden_field :item_id, :value => @item.id %></td>
+                    <td><%= f.submit "カートに入れる", class: "btn btn-outline-danger" %></td>
                         <% end %>
-                  </tr>   
+                  </tr>
               </tbody>
           </table>
       </div>

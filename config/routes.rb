@@ -52,6 +52,9 @@ Rails.application.routes.draw do
   namespace :public do
     get 'homes/top'
     get 'homes/about'
+    get 'unsubscribe' => 'homes#unsubscribe', as: 'confirm_unsubscribe'
+    patch ':id/withdraw' => 'homes#withdraw', as: 'withdraw_customer'
+    put 'withdraw' => 'customers#withdraw'
   end
 
   namespace :public do
@@ -84,6 +87,7 @@ Rails.application.routes.draw do
   end
   namespace :public do
 
+
     # resources :customers
     resources :customers, only: [:show, :edit, :update] do
   end
@@ -92,5 +96,6 @@ Rails.application.routes.draw do
     get 'customers/unsubscribe'
     patch 'customers/withdraw'
     patch "/customers/:id/hide" => "customers#hide", as: 'customers_hide'
+
   end
 end
