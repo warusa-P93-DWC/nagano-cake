@@ -51,6 +51,16 @@
                   <td>メールアドレス</td>
                   <td><%= @customer.email %></td>
                 </tr>
+                
+                <tr>
+                <td>会員ステータス
+                    <% if @customer.is_deleted == true %>
+                      <font color="red">退会</font>
+                    <%else%>
+                      <font color="green">有効</font>
+                    <% end %>
+                
+                </tr>
           </tbody>
         </table>
       </div>

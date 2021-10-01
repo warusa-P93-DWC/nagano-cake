@@ -1,52 +1,57 @@
-<div class='top-bg px-5 px-sm-0'>
-<div class="container">
-  <div class="row">
-    <p class="col-1"></p>
-    <p class="mt-4 fs-2 bg-light col-2 text-center">商品詳細</p>
+<div class="container my-5">
+  <div class="row pl-5">
+      <h4>商品詳細</h4>
   </div>
 
-  <div class="row">
-    <div class="col-1"></div>
-    <div class="item_image col-4">
-      <%= attachment_image_tag @item, :image, format: 'jpeg', fallback: "no_image.jpg",size:"400x300" %>
-    </div>
+  <div class = "row mt-4 justify-content-center">
+      <div class = "col-sm-3">
+        <%= attachment_image_tag @item, :image, size: "250x250", format: 'jpeg' %>
+      </div>
 
-    <div class="col-6 mt-4">
-      <div class="row">
-        <p class="col-2">商品名</p>
-        <p class="col-4 fs-5"><%=@item.name %></p>
+      <div class = "col-sm-5">
+          <table class="table table-borderless">
+              <tbody>
+                  <tr>
+                    <td>商品名</td>
+                    <td><%= @item.name %></td>
+                  </tr>
+
+                  <tr>
+                    <td>商品説明</td>
+                    <td><%= @item.detail %></td>
+                  </tr>
+
+                  <tr>
+                    <td>ジャンル</td>
+                    <td><%= @item.genre.name %></td>
+                  </tr>
+
+                  <tr>
+                    <td>税込価格</br>(税抜価格)</td>
+                    <!--税込と税抜が逆になってる-->
+                    <td><%= @item.price %>（<%= (@item.price * 1.1).floor %>）円</td>
+                  </tr>
+                       <!-- カートに入れるボタン -->
+                        <%#= form_with model:@cart_item, url:public_cart_item_path(@cart_item.id), local:true do |f| %>
+                  <% if @item.is_active == true %>
+                  <tr>
+                    <td class="col-3">販売ステータス</td>
+                    <td class="col-3 fs-5 fw-bold" style="color:green">販売中</td>
+                  </tr>
+                  <% elsif @item.is_active == false %>
+                  <tr>
+                    <td class="col-3">販売ステータス</td>
+                    <td class="col-3 fs-5" style="color:gray">販売停止中</td>
+                  </tr>
+                  <% end %>
+                  <tr>
+                  <th class=botann colspan="2"><%= link_to "編集する", edit_admin_item_path(@item),class:"btn btn-success"%></th>
+                  </tr>
+              </tbody>
+          </table>
       </div>
-      <div class="row">
-        <p class="col-2">商品説明</p>
-        <p class="col-4 fs-5"><%= @item.detail %></p>
-      </div>
-      <div class="row">
-        <p class="col-2">ジャンル</p>
-        <p class="col-4 fs-5"><%= @item.genre.name %></p>
-      </div>
-      <div class="row">
-        <p class="col-2">税込価格<br>(税抜価格)</p>
-        <p class="col-4 fs-5"><%= @item.price.to_s(:delimited) %>(<%#= @item.add_tax_price.to_s(:delimited) %>)円</p>
-      </div>
-      <% if @item.is_active == true %>
-      <div class="row">
-        <p class="col-3">販売ステータス</p>
-        <p class="col-3 fs-5 fw-bold" style="color:green">販売中</p>
-      </div>
-      <% elsif @item.is_active == false %>
-      <div class="row">
-        <p class="col-3">販売ステータス</p>
-        <p class="col-3 fs-5" style="color:gray">販売停止中</p>
-      </div>
-      <% end %>
-      <div class="row position-relative mt-4">
-      <%= link_to "編集する", edit_admin_item_path(@item),class:"btn btn-success col-2 position-absolute top-50 start-50 translate-middle"%>
-      </div>
-    </div>
   </div>
 </div>
-</div>
-
 
 <!--<h2>商品詳細</h2>-->
 <!--<%#= attachment_image_tag @item, :image, :fill, 300, 300, format: 'jpeg' %>-->

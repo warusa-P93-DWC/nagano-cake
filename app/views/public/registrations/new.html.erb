@@ -1,8 +1,9 @@
+<div class="shinzi">
 <h2>Sign up</h2>
 <%= form_with model: @customer, url: customer_registration_path, local: true do |f| %>
   <%#= render "devise/shared/error_messages", resource: resource %>
   <%= render "public/customers/shared/error_messages", resource: resource %>
-
+<table class="sign_up">
   <div class="field">
     <%= f.label :名前 %><br />
     <%= f.text_field :first_name, autofocus: true %>
@@ -64,3 +65,5 @@
 <%= link_to new_customer_session_path do%>
 <p>こちら</p>
 <% end %>
+</table>
+</div>
