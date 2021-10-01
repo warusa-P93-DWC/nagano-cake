@@ -50,9 +50,6 @@ class Public::OrdersController < ApplicationController
     @cart_items.each do |cart_item|
     @total_price += cart_item.quantity * cart_item.item.price
 
-    # if @order.invalid?(:confirm)
-      # render :new
-    # end
     end
   end
 
@@ -95,7 +92,7 @@ class Public::OrdersController < ApplicationController
     @order.status = 0
     @order.postage = params[:order][:postage]
     
-    @order.save!
+    @order.save
     # saveができた段階でOrderモデルにorder_idが入る
 
     # オーダー商品ごとの詳細の保存
@@ -106,7 +103,7 @@ class Public::OrdersController < ApplicationController
       @order_detail.quantity = cart.quantity
       @order_detail.making_status = 0
       @order_detail.item_id = cart.item.id
-      @order_detail.save!
+      @order_detail.save
     end
 
     current_customer.carts.destroy_all
